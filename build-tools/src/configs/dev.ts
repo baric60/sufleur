@@ -48,7 +48,7 @@ export function dev(): any {
 
 		plugins: [
 			new HtmlWebpackPlugin({
-				template: './src/index.html',
+				template: path.resolve(SRC_PATH, 'index.html'),
 				filename: './index.html',
 				inject: 'body',
 			}),

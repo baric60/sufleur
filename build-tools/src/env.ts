@@ -3,7 +3,7 @@
 import * as path from 'path';
 import * as minimist from 'minimist';
 
-const ROOT = path.join(process.cwd());
+const ROOT = path.resolve('../client');
 export const SRC_PATH = path.resolve(ROOT, 'src');
 export const DIST_PATH = path.resolve(ROOT, 'dist');
 export const BASE_HREF = './';
