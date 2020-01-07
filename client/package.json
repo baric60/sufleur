@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "author": "Anikin Alexey",
   "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "build-tools"
+  ],
   "dependencies": {
     "fp-ts": "^2.3.1",
     "fp-ts-routing": "^0.5.1",
@@ -12,5 +16,9 @@
     "rxjs": "^6.5.4",
     "styled-components": "^4.4.1",
     "typescript": "^3.7.4"
+  },
+  "scripts": {
+    "prettier": "prettier --list-different \"./src/**/*.{ts,tsx}\"",
+    "prettier:fix": "prettier --write \"./src/**/*.{ts,tsx}\""
   }
 }

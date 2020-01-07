@@ -1,7 +1,8 @@
 import * as webpack from 'webpack';
 import * as chalk from 'chalk';
+import { Configuration } from '../models/configuration';
 
-export const build = (configuration: any) => {
+export const build = (configuration: Configuration) => {
 	return new Promise<webpack.Stats>((resolve, reject) => {
 		webpack(configuration, (error, stats) => {
 			if (error) {
