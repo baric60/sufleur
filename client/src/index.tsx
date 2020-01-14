@@ -1,14 +1,27 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { ComponentType } from 'react';
-import { App } from './ui/modules/app/components/app/app.component';
+import { ComponentType, Fragment } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import RedBox from 'redbox-react';
+import { AppContainer } from './ui/modules/app/containers/app/app.container';
+import { styles } from './styles';
 
 const root = document.getElementById('root');
 
-const renderApplication = (Component: ComponentType) => {
-	const container = <Component />;
+const GlobalStyle = createGlobalStyle(styles);
 
-	render(container, root);
+const renderComponent = (Target: ComponentType) => {
+	const Component = (
+		<Fragment>
+			<GlobalStyle />
+			<Target />
+		</Fragment>
+	);
+	try {
+		render(Component, root);
+	} catch (e) {
+		render(<RedBox error={e} />, root);
+	}
 };
 
-renderApplication(App);
+renderComponent(AppContainer);
