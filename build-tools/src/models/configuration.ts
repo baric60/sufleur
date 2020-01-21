@@ -1,4 +1,5 @@
-import { Configuration as WebpackConfiguration, Options, Entry, Output, Module, Resolve, Plugin } from 'webpack';
+import { Configuration as WebpackConfiguration, Options, Entry, Output, Module, Plugin } from 'webpack';
+import { Resolve } from './resolve';
 
 export interface Configuration extends WebpackConfiguration {
 	mode: 'development' | 'production';

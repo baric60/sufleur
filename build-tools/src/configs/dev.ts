@@ -3,9 +3,12 @@ import { SRC_PATH, DIST_PATH, BASE_HREF, NODE_MODULES_PATH } from '../env';
 import { Configuration } from '../models/configuration';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
 export function dev(): Configuration {
-	return {
+	const smp = new SpeedMeasurePlugin(1);
+
+	return smp.wrap({
 		mode: 'development',
 
 		devtool: 'inline-source-map',
@@ -56,5 +59,5 @@ export function dev(): Configuration {
 			}),
 			new Visualizer(),
 		],
-	};
+	});
 }
