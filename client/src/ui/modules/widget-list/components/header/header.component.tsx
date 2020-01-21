@@ -3,9 +3,7 @@ import { PureComponent } from 'react';
 import { container, content, link } from './theme/header.theme';
 import { WithStyledProps, withStyled } from '../../../../utils/with-styled.utils';
 
-export type HeaderProps = {
-	name: string;
-};
+export type HeaderProps = {};
 
 @withStyled()
 export class Header extends PureComponent<WithStyledProps<HeaderProps>> {
@@ -13,14 +11,15 @@ export class Header extends PureComponent<WithStyledProps<HeaderProps>> {
 		const { styled } = this.props;
 		const Container = styled(container)();
 		const Content = styled(content)();
-		const Link = styled(link)('a');
+		const Label = styled(link)('p');
 
 		return (
 			<Container>
 				<Content>
-					<Link>Listenings</Link>
-					<Link>Duration</Link>
-					<Link>Created</Link>
+					<Label>Title</Label>
+					<Label>Listenings</Label>
+					<Label>Duration</Label>
+					<Label>Created</Label>
 				</Content>
 			</Container>
 		);

@@ -18,7 +18,7 @@ export const withObservable = <P extends object>(Target: ComponentType<P>) => <D
 		private readonly props$ = new BehaviorSubject<P>(this.props);
 		private readonly selected = selector(this.props$.asObservable());
 
-		private inputSubscription: Subscription;
+		private propsSubscription: Subscription;
 
 		componentDidMount() {
 			const { props } = this.selected;
@@ -27,8 +27,8 @@ export const withObservable = <P extends object>(Target: ComponentType<P>) => <D
 				const inputs: Observable<Partial<P>>[] = Object.keys(props).map(key =>
 					(props as any)[key].pipe(map(value => ({ [key]: value }))),
 				);
-				const result = merge(...inputs);
-				this.inputSubscription = result.subscribe(this.setState);
+				const streams$ = merge(...inputs);
+				this.propsSubscription = streams$.subscribe(this.setState);
 			}
 		}
 
@@ -37,7 +37,7 @@ export const withObservable = <P extends object>(Target: ComponentType<P>) => <D
 		}
 
 		componentWillUnmount() {
-			this.inputSubscription && this.inputSubscription.unsubscribe();
+			this.propsSubscription && this.propsSubscription.unsubscribe();
 		}
 
 		render() {

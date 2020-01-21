@@ -4,8 +4,12 @@ import { withStyled, WithStyledProps } from '../../../../utils/with-styled.utils
 import { container, content, control, title, fakeBlock } from './theme/wora-area.theme';
 import { Header } from '../header/components/header/header.component';
 import { CreateButton } from '../create-button/create-button.component';
+import { WidgetList } from '../../../widget-list/components/widget-list/widget-list.component';
 
-type WorkAreaProps = {};
+type MakeTheme<K extends string, T = string> = { [P in K]?: T };
+type WorkAreaProps = {
+	theme: MakeTheme<'container' | 'content' | 'control' | 'label' | 'fakeBlock'>;
+};
 
 @withStyled()
 export class WorkArea extends PureComponent<WithStyledProps<WorkAreaProps>> {
@@ -26,7 +30,7 @@ export class WorkArea extends PureComponent<WithStyledProps<WorkAreaProps>> {
 						<Label>My Sufleurs</Label>
 						<CreateButton />
 					</Control>
-					{children}
+					<WidgetList>{children}</WidgetList>
 				</Content>
 			</Container>
 		);

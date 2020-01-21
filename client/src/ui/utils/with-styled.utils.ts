@@ -32,7 +32,9 @@ export const styledWrapper: <P extends object>(
 
 export type StyledTransformer<P extends object> = (
 	callback: StyledWrapper<P>,
-) => <T extends keyof JSX.IntrinsicElements>(Target?: T) => ComponentType<JSX.IntrinsicElements[T]>;
+) => <T extends keyof JSX.IntrinsicElements = JSX.IntrinsicElements['div']>(
+	Target?: T,
+) => ComponentType<JSX.IntrinsicElements[T]>;
 
 export type WithStyledProps<P extends object = {}> = P & {
 	styled?: StyledTransformer<P>;

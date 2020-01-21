@@ -1,10 +1,7 @@
-import { HeaderProps } from '../header.component';
-import { StyledWrapper } from '../../../../../utils/with-styled.utils';
-
-export const container: StyledWrapper<HeaderProps> = props => `
-    animation: ${props.name} infinite 120s linear;
+export const container = () => `
+    animation: infinite 120s linear;
     height: 50px;
-    widht: 100%;
+    width: 100%;
     padding: 0 56px;
     border-bottom: 1px solid rgba(51, 51, 51, 0.08);
 `;

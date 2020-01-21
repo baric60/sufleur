@@ -11,8 +11,3 @@ export const button = () => `
     padding: 14px 18px; 
     font-size: 16px;
 `;
-
-export const label = () => `
-    padding-right: 10px;
-
-`;

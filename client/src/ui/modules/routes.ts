@@ -2,7 +2,6 @@ import { end, lit, Match, Route } from 'fp-ts-routing';
 import { Option } from 'fp-ts/lib/Option';
 
 const root = end;
-
 const widget = lit('widget');
 
 export const routes = {
