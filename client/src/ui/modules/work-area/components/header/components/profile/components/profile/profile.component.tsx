@@ -1,15 +1,21 @@
 import * as React from 'react';
 import { PureComponent } from 'react';
-import { withStyled, WithStyledProps } from '../../../../../../../../utils/with-styled.utils';
-import { button } from './theme/profile.theme';
+import { withStyled } from '../../../../../../../../utils/with-styled.utils';
+import { theme } from './theme/profile.theme';
+import { withStyles } from '../../../../../../../../../ui-kit/utils/with-styles.utils';
+import { MakeTheme } from '../../../../../../../../../ui-kit/utils/theme.utils';
 
-type ProfileProps = {};
+type ProfileProps = {
+	theme: MakeTheme<'button'>;
+};
 
-@withStyled()
-export class Profile extends PureComponent<WithStyledProps<ProfileProps>> {
+class RawProfile extends PureComponent<ProfileProps> {
 	render() {
-		const { styled } = this.props;
-		const Button = styled(button)();
+		const { theme } = this.props;
+		const Button = withStyled(theme.button)();
+
 		return <Button>C</Button>;
 	}
 }
+
+export const Profile = withStyles(theme)(RawProfile);

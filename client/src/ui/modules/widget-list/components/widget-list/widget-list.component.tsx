@@ -1,14 +1,19 @@
 import * as React from 'react';
 import { PureComponent } from 'react';
-import { withStyled, WithStyledProps } from '../../../../utils/with-styled.utils';
-import { container } from './theme/widget-list.theme';
+import { withStyled } from '../../../../utils/with-styled.utils';
+import { theme } from './theme/widget-list.theme';
 import { Header } from '../header/header.component';
+import { withStyles } from '../../../../../ui-kit/utils/with-styles.utils';
+import { MakeTheme } from '../../../../../ui-kit/utils/theme.utils';
 
-@withStyled()
-export class WidgetList extends PureComponent<WithStyledProps> {
+type RawWidgetListProps = {
+	theme: MakeTheme<'container'>;
+};
+
+class RawWidgetList extends PureComponent<RawWidgetListProps> {
 	render() {
-		const { styled, children } = this.props;
-		const Container = styled(container)();
+		const { theme, children } = this.props;
+		const Container = withStyled(theme.container)();
 
 		return (
 			<Container>
@@ -18,3 +23,5 @@ export class WidgetList extends PureComponent<WithStyledProps> {
 		);
 	}
 }
+
+export const WidgetList = withStyles(theme)(RawWidgetList);

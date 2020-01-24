@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { PureComponent, FocusEvent, ChangeEvent } from 'react';
-import { withStyled, WithStyledProps } from '../../../ui/utils/with-styled.utils';
-import { container, input } from './theme/input.theme';
+import { withStyled } from '../../../ui/utils/with-styled.utils';
+import { theme } from './theme/input.theme';
 import { ControlProps } from '../../utils/control.utils';
+import { withStyles } from '../../utils/with-styles.utils';
+import { MakeTheme } from '../../utils/theme.utils';
 
 export type InputType = 'text' | 'password';
 
-type InputProps = ControlProps<string | undefined> & {
+type RawInputProps = ControlProps<string | undefined> & {
 	isDisabled?: boolean;
 	isReadOnly?: boolean;
 	type?: InputType;
@@ -14,15 +16,15 @@ type InputProps = ControlProps<string | undefined> & {
 	name?: string;
 	onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
 	onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
+	theme: MakeTheme<'container' | 'input'>;
 };
 
-@withStyled()
-export class Input extends PureComponent<WithStyledProps<InputProps>> {
+class RawInput extends PureComponent<RawInputProps> {
 	render() {
 		const {
 			value,
 			defaultValue,
-			styled,
+			theme,
 			isDisabled,
 			isReadOnly,
 			placeholder,
@@ -32,8 +34,8 @@ export class Input extends PureComponent<WithStyledProps<InputProps>> {
 			onBlur,
 			children,
 		} = this.props;
-		const Container = styled(container)();
-		const Input = styled(input)('input');
+		const Container = withStyled(theme.container)();
+		const Input = withStyled(theme.input)('input');
 
 		return (
 			<Container>
@@ -59,3 +61,5 @@ export class Input extends PureComponent<WithStyledProps<InputProps>> {
 		onValueChange(event.target.value);
 	};
 }
+
+export const Input = withStyles(theme)(RawInput);

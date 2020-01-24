@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { PureComponent } from 'react';
-import { withStyled, WithStyledProps } from '../../../../utils/with-styled.utils';
-import { container, content, control, title, fakeBlock } from './theme/wora-area.theme';
+import { withStyled } from '../../../../utils/with-styled.utils';
+import { theme } from './theme/wora-area.theme';
 import { Header } from '../header/components/header/header.component';
 import { CreateButton } from '../create-button/create-button.component';
 import { WidgetList } from '../../../widget-list/components/widget-list/widget-list.component';
+import { withStyles } from '../../../../../ui-kit/utils/with-styles.utils';
+import { MakeTheme } from '../../../../../ui-kit/utils/theme.utils';
 
-type MakeTheme<K extends string, T = string> = { [P in K]?: T };
 type WorkAreaProps = {
-	theme?: MakeTheme<'container' | 'content' | 'control' | 'label' | 'fakeBlock'>;
+	theme: MakeTheme<'container' | 'content' | 'control' | 'title' | 'fakeBlock'>;
 };
 
-@withStyled()
-export class WorkArea extends PureComponent<WithStyledProps<WorkAreaProps>> {
+class RawWorkArea extends PureComponent<WorkAreaProps> {
 	render() {
-		const { styled, children } = this.props;
-		const Container = styled(container)();
-		const Content = styled(content)();
-		const Control = styled(control)();
-		const Label = styled(title)('p');
-		const FakeBlock = styled(fakeBlock)();
+		const { theme, children } = this.props;
+		const Container = withStyled(theme.container)();
+		const Content = withStyled(theme.content)();
+		const Control = withStyled(theme.control)();
+		const Title = withStyled(theme.title)('p');
+		const FakeBlock = withStyled(theme.fakeBlock)();
 
 		return (
 			<Container>
@@ -27,7 +27,7 @@ export class WorkArea extends PureComponent<WithStyledProps<WorkAreaProps>> {
 					<Header />
 					<Control>
 						<FakeBlock />
-						<Label>My Sufleurs</Label>
+						<Title>My Sufleurs</Title>
 						<CreateButton />
 					</Control>
 					<WidgetList>{children}</WidgetList>
@@ -36,3 +36,5 @@ export class WorkArea extends PureComponent<WithStyledProps<WorkAreaProps>> {
 		);
 	}
 }
+
+export const WorkArea = withStyles(theme)(RawWorkArea);

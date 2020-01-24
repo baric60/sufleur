@@ -1,8 +1,8 @@
-export const container = () => `
+const container = `
     display: inline-block
 `;
 
-export const input = () => `
+const input = `
     height: 54px;
     background: #F8F8F8;
     border-radius: 10px;
@@ -12,3 +12,8 @@ export const input = () => `
     border: 0;
     outline: none;
 `;
+
+export const theme = {
+	container,
+	input,
+};

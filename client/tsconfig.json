@@ -1,16 +1,36 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react",
-    "outDir": "./src/dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
+    "strict": true,
     "module": "commonjs",
+    "sourceMap": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "jsx": "react",
+    "strictNullChecks": true,
+    "importHelpers": true,
+    "lib": [
+      "es2016",
+      "dom",
+      "es2017.object",
+      "es2015.symbol",
+      "es2015.symbol.wellknown"
+    ],
     "target": "es5",
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "experimentalDecorators": true
+    "pretty": true,
+    "noUnusedLocals": true
   },
-  "include": ["./src/**/*", "./client/src/**/*", "./typings.d.ts"],
-  "exclude": ["**/*.spec.ts", "node_modules"]
+  "include": [
+    "typings/**/*",
+    "src/**/*"
+  ],
+  "exclude": [
+    "**/__tests__/*",
+    "node_modules"
+  ]
 }

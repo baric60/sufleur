@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { PureComponent } from 'react';
-import { container, content, link } from './theme/header.theme';
-import { WithStyledProps, withStyled } from '../../../../utils/with-styled.utils';
+import { theme } from './theme/header.theme';
+import { withStyled } from '../../../../utils/with-styled.utils';
+import { withStyles } from '../../../../../ui-kit/utils/with-styles.utils';
+import { MakeTheme } from '../../../../../ui-kit/utils/theme.utils';
 
-export type HeaderProps = {};
+export type HeaderProps = {
+	theme: MakeTheme<'container' | 'content' | 'link'>;
+};
 
-@withStyled()
-export class Header extends PureComponent<WithStyledProps<HeaderProps>> {
+class RawHeader extends PureComponent<HeaderProps> {
 	render() {
-		const { styled } = this.props;
-		const Container = styled(container)();
-		const Content = styled(content)();
-		const Label = styled(link)('p');
+		const { theme } = this.props;
+		const Container = withStyled(theme.container)();
+		const Content = withStyled(theme.content)();
+		const Label = withStyled(theme.link)('p');
 
 		return (
 			<Container>
@@ -25,3 +28,5 @@ export class Header extends PureComponent<WithStyledProps<HeaderProps>> {
 		);
 	}
 }
+
+export const Header = withStyles(theme)(RawHeader);

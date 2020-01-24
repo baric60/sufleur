@@ -1,4 +1,4 @@
-export const container = () => `
+const container = `
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,9 +7,11 @@ export const container = () => `
     background: #F8F8F8;
 `;
 
-export const content = () => `
+const content = `
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 `;
+
+export const theme = { container, content };

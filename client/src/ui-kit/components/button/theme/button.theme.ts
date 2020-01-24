@@ -1,7 +1,7 @@
-export const container = () => `
+const container = `
     padding: 5px;
 `;
-export const button = () => `
+const button = `
     display: flex;
     align-items: center;
     background: rgb(3 0 163);
@@ -17,3 +17,8 @@ export const button = () => `
         background: rgb(3 0 163 / .5);
     }
 `;
+
+export const theme = {
+	container,
+	button,
+};
