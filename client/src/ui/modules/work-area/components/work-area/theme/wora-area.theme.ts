@@ -1,4 +1,4 @@
-export const container = () => `
+const container = `
     display: flex;
     flex-direction: column;
     align-items:center;
@@ -6,12 +6,12 @@ export const container = () => `
     background: #F8F8F8;
 `;
 
-export const content = () => `
+const content = `
     width: 100%;
     max-width: 950px;
 `;
 
-export const control = () => `
+const control = `
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -19,7 +19,7 @@ export const control = () => `
     padding-bottom: 20px;
 `;
 
-export const title = () => `
+const title = `
     font-family: Vollkorn;
     font-weight: bold;
     font-size: 40px;
@@ -27,6 +27,14 @@ export const title = () => `
     color: #333333;
 `;
 
-export const fakeBlock = () => `
+const fakeBlock = `
     width: 169px;
 `;
+
+export const theme = {
+	container,
+	content,
+	control,
+	title,
+	fakeBlock,
+};

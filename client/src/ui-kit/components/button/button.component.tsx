@@ -1,21 +1,24 @@
 import * as React from 'react';
 import { PureComponent, MouseEvent } from 'react';
-import { withStyled, WithStyledProps } from '../../../ui/utils/with-styled.utils';
-import { container, button } from './theme/button.theme';
+import { withStyled } from '../../../ui/utils/with-styled.utils';
+import { theme } from './theme/button.theme';
+import { withStyles } from '../../utils/with-styles.utils';
+import { PartialKeys } from '../../utils/object.utils';
+import { MakeTheme } from '../../utils/theme.utils';
 
-export type ButtonProps = {
+type RawButtonProps = {
 	isDisabled?: boolean;
 	className?: string;
 	onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 	onDoubleClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+	theme: MakeTheme<'container' | 'button'>;
 };
 
-@withStyled()
-export class Button extends PureComponent<WithStyledProps<ButtonProps>> {
+class RawButton extends PureComponent<RawButtonProps> {
 	render() {
-		const { styled, isDisabled, className, onClick, onDoubleClick, children } = this.props;
-		const Container = styled(container)();
-		const Button = styled(button)('button');
+		const { theme, isDisabled, className, onClick, onDoubleClick, children } = this.props;
+		const Container = withStyled(theme.container)();
+		const Button = withStyled(theme.button)('button');
 
 		return (
 			<Container>
@@ -26,3 +29,5 @@ export class Button extends PureComponent<WithStyledProps<ButtonProps>> {
 		);
 	}
 }
+export type ButtonProps = PartialKeys<RawButtonProps, 'theme'>;
+export const Button = withStyles(theme)(RawButton);

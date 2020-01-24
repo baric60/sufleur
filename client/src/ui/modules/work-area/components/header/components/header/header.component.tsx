@@ -1,20 +1,22 @@
 import * as React from 'react';
 import { PureComponent } from 'react';
-import { withStyled, WithStyledProps } from '../../../../../../utils/with-styled.utils';
-import { container, content } from './theme/header.theme';
+import { withStyled } from '../../../../../../utils/with-styled.utils';
+import { theme } from './theme/header.theme';
 import { Logo } from './assets/logo.icon';
 import { Profile } from '../profile/components/profile/profile.component';
-import { Link } from '../../../../../../../ui-kit/components/link/link.component';
+import { withStyles } from '../../../../../../../ui-kit/utils/with-styles.utils';
+import { MakeTheme } from '../../../../../../../ui-kit/utils/theme.utils';
 
-type HeaderProps = {};
+type HeaderProps = {
+	theme: MakeTheme<'container' | 'content' | 'logo'>;
+};
 
-@withStyled()
-export class Header extends PureComponent<WithStyledProps<HeaderProps>> {
+class RawHeader extends PureComponent<HeaderProps> {
 	render() {
-		const { styled } = this.props;
-		const Container = styled(container)();
-		const Content = styled(content)();
-		const LogoLink = styled(() => '')('a');
+		const { theme } = this.props;
+		const Container = withStyled(theme.container)();
+		const Content = withStyled(theme.content)();
+		const LogoLink = withStyled(theme.logo)('a');
 
 		return (
 			<Container>
@@ -28,3 +30,5 @@ export class Header extends PureComponent<WithStyledProps<HeaderProps>> {
 		);
 	}
 }
+
+export const Header = withStyles(theme)(RawHeader);

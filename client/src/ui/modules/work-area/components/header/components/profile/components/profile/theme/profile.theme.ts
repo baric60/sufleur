@@ -1,4 +1,4 @@
-export const button = () => `
+const button = `
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,3 +12,7 @@ export const button = () => `
     color: #F8F8F8;
     cursor: pointer;
 `;
+
+export const theme = {
+	button,
+};
