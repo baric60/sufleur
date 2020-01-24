@@ -8,7 +8,7 @@ import { styles } from './styles';
 
 const root = document.getElementById('root');
 
-const GlobalStyle = createGlobalStyle(styles);
+export const GlobalStyle = createGlobalStyle(styles);
 
 const renderComponent = (Target: ComponentType) => {
 	const Component = (

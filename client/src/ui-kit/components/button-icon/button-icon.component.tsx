@@ -4,10 +4,14 @@ import { ButtonProps } from '../button/button.component';
 import { withStyled, WithStyledProps } from '../../../ui/utils/with-styled.utils';
 import { label } from './theme/button-icon.theme';
 
+export type IconPosition = 'Left' | 'Right';
+
 export type ButtonIconProps = {
-	iconPosition: 'Left' | 'Right';
-	Button: ComponentType<ButtonProps>;
-	Icon: ComponentType;
+	iconPosition?: IconPosition;
+	Button?: ComponentType<ButtonProps>;
+	Icon?: ComponentType;
+	isDisabled?: boolean;
+	onClick: () => void;
 };
 
 @withStyled()

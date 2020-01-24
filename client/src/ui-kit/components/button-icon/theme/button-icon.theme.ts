@@ -1,3 +1,3 @@
 export const label = () => `
-    padding-right: 10px;
+    padding: 0 10px;
 `;

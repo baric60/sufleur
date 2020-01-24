@@ -8,7 +8,7 @@ import { WidgetList } from '../../../widget-list/components/widget-list/widget-l
 
 type MakeTheme<K extends string, T = string> = { [P in K]?: T };
 type WorkAreaProps = {
-	theme: MakeTheme<'container' | 'content' | 'control' | 'label' | 'fakeBlock'>;
+	theme?: MakeTheme<'container' | 'content' | 'control' | 'label' | 'fakeBlock'>;
 };
 
 @withStyled()
