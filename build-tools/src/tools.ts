@@ -9,6 +9,7 @@ const requireScript = (script: Script) => {
 
 switch (script) {
 	case 'build':
+	case 'server':
 	case 'start':
 		requireScript(script);
 		break;

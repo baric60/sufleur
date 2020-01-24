@@ -28,6 +28,10 @@ export const styles = () => `
         vertical-align: baseline;
     }
 
+    * {
+        box-sizing: border-box;
+    }
+
     html {
         font-family: 'Be Vietnam', sans-serif; 
     }

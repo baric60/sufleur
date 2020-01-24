@@ -1,1 +1,1 @@
-export type Script = 'build' | 'start';
+export type Script = 'build' | 'server' | 'start';

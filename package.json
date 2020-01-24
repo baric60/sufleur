@@ -10,6 +10,8 @@
   ],
   "scripts": {
     "build": "yarn workspace build-tools build",
-    "start": "yarn workspace build-tools start"
+    "server": "yarn workspace build-tools server",
+    "start": "yarn workspace build-tools start",
+    "storybook": "yarn workspace build-tools storybook"
   }
 }

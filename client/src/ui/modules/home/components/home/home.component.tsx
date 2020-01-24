@@ -4,6 +4,6 @@ import { WorkArea } from '../../../work-area/components/work-area/work-area.comp
 
 export class Home extends PureComponent {
 	render() {
-		return <WorkArea></WorkArea>;
+		return <WorkArea />;
 	}
 }

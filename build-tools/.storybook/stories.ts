@@ -1,1 +1,6 @@
-export const stories = ['../../client/src/ui-kit/components/button/demo/button.story.tsx'];
+import { sync } from 'glob';
+export const stories = sync('**/*.story.tsx', {
+	cwd: '..',
+	ignore: ['node_modules'],
+	nosort: true,
+});

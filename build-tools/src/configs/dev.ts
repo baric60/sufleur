@@ -6,7 +6,7 @@ const Visualizer = require('webpack-visualizer-plugin');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
 export function dev(): Configuration {
-	const smp = new SpeedMeasurePlugin(1);
+	const smp = new SpeedMeasurePlugin();
 
 	return smp.wrap({
 		mode: 'development',
