@@ -9,14 +9,14 @@ type Answer = {
 	script: Script;
 };
 
-const requireScript = (script: Script) => {
+const runScript = (script: Script) => {
 	require(require.resolve(`../scripts/${script}`));
 };
 
 prompt<Answer>({
 	type: 'list',
 	name: 'script',
-	message: 'What do you want?',
+	message: 'What do you want',
 	default: 'server',
 	choices,
-}).then((answer: Answer) => requireScript(answer.script));
+}).then((answer: Answer) => runScript(answer.script));

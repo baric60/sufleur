@@ -3,7 +3,7 @@ import { Script } from './models/script';
 
 const script: Script = argv['script'];
 
-const requireScript = (script: Script) => {
+const runScript = (script: Script) => {
 	require(require.resolve(`./scripts/${script}`));
 };
 
@@ -11,7 +11,7 @@ switch (script) {
 	case 'build':
 	case 'server':
 	case 'start':
-		requireScript(script);
+		runScript(script);
 		break;
 	default:
 		break;

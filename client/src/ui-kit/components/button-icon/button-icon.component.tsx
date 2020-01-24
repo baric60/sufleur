@@ -20,8 +20,6 @@ export class ButtonIcon extends PureComponent<WithStyledProps<ButtonIconProps>> 
 		const { Button, Icon, iconPosition, styled, children } = this.props;
 		const Label = styled(label)();
 
-		console.log(this.props);
-
 		return (
 			<Button>
 				{iconPosition === 'Left' && <Icon />}
