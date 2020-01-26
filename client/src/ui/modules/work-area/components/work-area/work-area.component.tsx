@@ -14,7 +14,7 @@ type WorkAreaProps = {
 
 class RawWorkArea extends PureComponent<WorkAreaProps> {
 	render() {
-		const { theme, children } = this.props;
+		const { theme } = this.props;
 		const Container = withStyled(theme.container)();
 		const Content = withStyled(theme.content)();
 		const Control = withStyled(theme.control)();
@@ -30,7 +30,7 @@ class RawWorkArea extends PureComponent<WorkAreaProps> {
 						<Title>My Sufleurs</Title>
 						<CreateButton />
 					</Control>
-					<WidgetList>{children}</WidgetList>
+					<WidgetList data={[]} />
 				</Content>
 			</Container>
 		);

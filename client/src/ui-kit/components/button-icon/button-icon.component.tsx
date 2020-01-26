@@ -20,7 +20,6 @@ type RawButtonIconProps = {
 
 class RawButtonIcon extends PureComponent<RawButtonIconProps> {
 	render() {
-		console.log(this.props);
 		const { Button, Icon, theme, iconPosition, children } = this.props;
 		const Label = withStyled(theme.label)('label');
 

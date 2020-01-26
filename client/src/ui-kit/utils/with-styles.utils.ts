@@ -16,7 +16,7 @@ export const withStyles = <P extends object>(originalTheme: FunctionalTheme<P>) 
 	Target: ComponentType<WithFunctionalTheme<P>>,
 ): ComponentType<WithFunctionalTheme<P>> => {
 	return class WithStyles extends PureComponent<WithFunctionalTheme<P>> {
-		static displayName = `WithStyles(${Target.displayName})`;
+		static displayName = `WithStyles(${Target.displayName || Target.name} )`;
 
 		render() {
 			const { theme, ...rest } = this.props;
