@@ -18,7 +18,7 @@ export const withObservable = <P extends object>(Target: ComponentType<P>) => <D
 		private readonly props$ = new BehaviorSubject<P>(this.props);
 		private readonly selected = selector(this.props$.asObservable());
 
-		private propsSubscription: Subscription;
+		private propsSubscription?: Subscription;
 
 		componentDidMount() {
 			const { props } = this.selected;

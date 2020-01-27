@@ -17,7 +17,7 @@ export type withStyled<P extends object = never> = (props: StyledProps<P>) => st
 export type StyledProps<P extends object> = NonFunctionalTheme<P>;
 
 export const withStyled: (
-	styles: string,
+	styles?: string,
 ) => <T extends keyof JSX.IntrinsicElements>(
 	Target?: T,
 ) => ComponentType<JSX.IntrinsicElements[T]> = styles => Target => {

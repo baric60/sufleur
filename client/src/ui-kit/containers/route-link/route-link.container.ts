@@ -6,7 +6,7 @@ const rx = withObservable(RouteLinkComponent);
 export const RouterLink = rx(() => ({
 	defaultProps: {
 		onNavigate: options => {
-			const { href, action } = options;
+			const { action } = options;
 			console.log(options);
 			switch (action) {
 				case 'PUSH': {
