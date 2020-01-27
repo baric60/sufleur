@@ -4,6 +4,7 @@ import { Configuration } from '../models/configuration';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 export function dev(): Configuration {
 	const smp = new SpeedMeasurePlugin();
@@ -48,7 +49,7 @@ export function dev(): Configuration {
 		},
 
 		resolve: {
-			extensions: ['.ts', '.jsx', '.tsx', '.js', 'css', '.styl'],
+			extensions: ['.ts', '.jsx', '.tsx', '.js', 'css', '.styl', , ,],
 		},
 
 		plugins: [
@@ -58,6 +59,9 @@ export function dev(): Configuration {
 				inject: 'body',
 			}),
 			new Visualizer(),
+			new ForkTsCheckerWebpackPlugin({
+				eslint: true,
+			}),
 		],
 	});
 }
