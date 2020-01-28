@@ -3,7 +3,6 @@ import { PureComponent } from 'react';
 import { theme } from './theme/empty.theme';
 import { Button } from '../../../../../ui-kit/components/button/button.component';
 import { Link } from '../../../../../ui-kit/components/link/link.component';
-
 import { Bird } from './assets/bird.icon';
 import { withStyled } from '../../../../utils/with-styled.utils';
 

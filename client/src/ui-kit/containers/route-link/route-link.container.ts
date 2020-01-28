@@ -1,21 +1,27 @@
 import { withObservable } from '../../../ui/utils/with-observable.utils';
 import { RouteLinkComponent } from '../../components/router-link/route-link.component';
+import { ask } from '@devexperts/rx-utils/dist/context.utils';
+import { History } from '../../../ui/utils/history.utils';
 
-const rx = withObservable(RouteLinkComponent);
+type RouteLinkContainerContext = {
+	readonly history: History;
+};
 
-export const RouterLink = rx(() => ({
-	defaultProps: {
-		onNavigate: options => {
-			const { href, action } = options;
-			console.log(options);
-			switch (action) {
-				case 'PUSH': {
-					// return e.history.push(href);
+export const RouterLink = ask<RouteLinkContainerContext>().map(e =>
+	withObservable(RouteLinkComponent)(() => ({
+		defaultProps: {
+			onNavigate: options => {
+				const { href, action } = options;
+
+				switch (action) {
+					case 'PUSH': {
+						return e.history.push(href);
+					}
+					case 'REPLACE': {
+						return e.history.replace(href);
+					}
 				}
-				case 'REPLACE': {
-					// return e.history.replace(href);
-				}
-			}
+			},
 		},
-	},
-}));
+	})),
+);

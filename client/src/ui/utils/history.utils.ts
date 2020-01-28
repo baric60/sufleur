@@ -18,6 +18,8 @@ type HistoryProps<R extends RouterState> = {
 	replace: (path: Path) => void;
 };
 
+export type History = HistoryProps<RouterState>;
+
 export const createHistory = (): HistoryProps<RouterState> => {
 	const history = initHistory();
 	const { location, action, listen, push, replace } = history;

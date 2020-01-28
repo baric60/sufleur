@@ -11,14 +11,14 @@ type WithRXSelectorResult<P extends object, D extends Partial<P>> = {
 
 export const withObservable = <P extends object>(Target: ComponentType<P>) => <D extends Partial<P>>(
 	selector: (props$: Observable<Readonly<P>>) => WithRXSelectorResult<P, D>,
-) => {
+): ComponentType<D> => {
 	class WithObservable extends PureComponent<P, Partial<P>> {
 		static displayName = `WithObservable(${Target.displayName || Target.name})`;
 
 		private readonly props$ = new BehaviorSubject<P>(this.props);
 		private readonly selected = selector(this.props$.asObservable());
 
-		private propsSubscription: Subscription;
+		private propsSubscription!: Subscription;
 
 		componentDidMount() {
 			const { props } = this.selected;
@@ -47,5 +47,5 @@ export const withObservable = <P extends object>(Target: ComponentType<P>) => <D
 		}
 	}
 
-	return WithObservable;
+	return WithObservable as any;
 };
