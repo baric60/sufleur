@@ -28,7 +28,7 @@ export const withObservable = <P extends object>(Target: ComponentType<P>) => <D
 					(props as any)[key].pipe(map(value => ({ [key]: value }))),
 				);
 				const streams$ = merge(...inputs);
-				this.propsSubscription = streams$.subscribe(this.setState);
+				this.propsSubscription = streams$.subscribe(this.setState.bind(this));
 			}
 		}
 

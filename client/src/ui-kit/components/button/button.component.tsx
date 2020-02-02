@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PureComponent, MouseEvent } from 'react';
-import { withStyled } from '../../../ui/utils/with-styled.utils';
+import { withStyled } from '../../../ui-kit/utils/with-styled.utils';
 import { theme } from './theme/button.theme';
 import { withStyles } from '../../utils/with-styles.utils';
 import { PartialKeys } from '../../utils/object.utils';

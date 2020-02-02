@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { PureComponent } from 'react';
 import { theme } from './theme/header.theme';
-import { withStyled } from '../../../../utils/with-styled.utils';
 import { withStyles } from '../../../../../ui-kit/utils/with-styles.utils';
 import { MakeTheme } from '../../../../../ui-kit/utils/theme.utils';
+import { withStyled } from '../../../../../ui-kit/utils/with-styled.utils';
 
 export type HeaderProps = {
 	theme: MakeTheme<'container' | 'content' | 'link'>;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PureComponent, FocusEvent, ChangeEvent } from 'react';
-import { withStyled } from '../../../ui/utils/with-styled.utils';
+import { withStyled } from '../../../ui-kit/utils/with-styled.utils';
 import { theme } from './theme/input.theme';
 import { ControlProps } from '../../utils/control.utils';
 import { withStyles } from '../../utils/with-styles.utils';

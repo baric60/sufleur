@@ -261,4 +261,9 @@ export const styles = () => `
         color: #000;
         padding: 0.2em 0;
     }
+
+    html, body, #root {
+        height: 100%;
+        width: 100%;
+    }
 `;

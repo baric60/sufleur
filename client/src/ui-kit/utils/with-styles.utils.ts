@@ -58,6 +58,10 @@ const mergeTwoThemes = <P extends object>(
 						result[key] = mergeThemes(props, theme);
 						break;
 					}
+					case 'undefined': {
+						result[key] = value;
+						break;
+					}
 					case 'object': {
 						result[key] = mergeThemes(props, originalValue, value);
 						break;

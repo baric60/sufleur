@@ -6,7 +6,7 @@ export type RouteLinkNavigateOptions = {
 	href: string;
 };
 
-type RouteLinkComponentProps = {
+export type RouteLinkComponentProps = {
 	href: string;
 	render: (props: RouteLinkRenderProps) => ReactNode;
 	onNavigate: (options: RouteLinkNavigateOptions) => void;
