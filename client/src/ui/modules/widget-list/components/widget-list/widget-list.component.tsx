@@ -18,7 +18,6 @@ type Widget = {
 
 type RawWidgetListProps = {
 	data: Widget[];
-
 	theme: MakeTheme<'container'>;
 };
 

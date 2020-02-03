@@ -7,6 +7,7 @@ import { PartialKeys } from '../../utils/object.utils';
 import { MakeTheme } from '../../utils/theme.utils';
 
 type RawButtonProps = {
+	isActive?: boolean;
 	isDisabled?: boolean;
 	className?: string;
 	onClick?: (event: MouseEvent<HTMLButtonElement>) => void;

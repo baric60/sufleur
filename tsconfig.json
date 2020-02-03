@@ -10,6 +10,6 @@
     "removeComments": true,
     "preserveConstEnums": true
   },
-  "include": ["./src/**/*", "./client/src/**/*", "./typings.d.ts"],
+  "include": ["./client/src/**/*"],
   "exclude": ["**/*.spec.ts", "node_modules"]
 }

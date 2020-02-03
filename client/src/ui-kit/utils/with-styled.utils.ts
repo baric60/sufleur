@@ -12,7 +12,7 @@ type NonFunctionPropertyNames<T extends object> = { [K in keyof T]: T[K] extends
 
 export type NonFunctionalTheme<P extends object> = Pick<P, NonFunctionPropertyNames<P>>;
 
-export type withStyled<P extends object = never> = (props: StyledProps<P>) => string;
+export type withStyledProps<P extends object = never> = (props: StyledProps<P>) => string;
 
 export type StyledProps<P extends object> = NonFunctionalTheme<P>;
 

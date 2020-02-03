@@ -10,33 +10,66 @@ import { InputTheme } from './theme/input.theme';
 import { Input } from '../../../../../ui-kit/components/input/input.component';
 import { Textarea } from '../../../../../ui-kit/components/textarea/textarea.component';
 import { withStyled } from '../../../../../ui-kit/utils/with-styled.utils';
+import { ControlProps } from '../../../../../ui-kit/utils/control.utils';
 
-type CreateComponentProps = {
+type FormValue = {
+	title: string;
+	description: string;
+};
+
+type CreateComponentProps = ControlProps<FormValue> & {
+	isDisabled: boolean;
 	theme: MakeTheme<'container' | 'content' | 'work' | 'Input' | 'Textarea'>;
 };
 
 export const Create = combineContext(Header, ask(), Header => {
 	class RawCreateComponent extends PureComponent<CreateComponentProps> {
 		render() {
-			const { theme } = this.props;
+			const { value, theme, isDisabled } = this.props;
 			const Container = withStyled(theme.container)();
 			const Content = withStyled(theme.content)();
 			const WorkArea = withStyled(theme.work)();
 
-			console.log(theme);
-
 			return (
 				<Container>
 					<Content>
-						<Header />
+						<Header isDisabled={isDisabled} />
 						<WorkArea>
-							<Input placeholder="Sufleur title" theme={theme.Input} />
-							<Textarea placeholder="Type or paste the text here" theme={theme.Textarea} />
+							<Input
+								value={value.title}
+								placeholder="Sufleur title"
+								theme={theme.Input}
+								onValueChange={this.handleTitleChange}
+							/>
+							<Textarea
+								value={value.description}
+								placeholder="Type or paste the text here"
+								theme={theme.Textarea}
+								onValueChange={this.handleDescriptionChange}
+							/>
 						</WorkArea>
 					</Content>
 				</Container>
 			);
 		}
+
+		private handleTitleChange = (title: string) => {
+			const { value, onValueChange } = this.props;
+			onValueChange &&
+				onValueChange({
+					...value,
+					title,
+				});
+		};
+
+		private handleDescriptionChange = (description: string) => {
+			const { value, onValueChange } = this.props;
+			onValueChange &&
+				onValueChange({
+					...value,
+					description,
+				});
+		};
 	}
 
 	const mergedTheme = {

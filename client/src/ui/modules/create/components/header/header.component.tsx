@@ -10,13 +10,14 @@ import { CloseButton } from './components/close-button/close-button.component';
 import { withStyled } from '../../../../../ui-kit/utils/with-styled.utils';
 
 type RawHeaderProps = {
+	isDisabled: boolean;
 	theme: MakeTheme<'container' | 'content' | 'audio' | 'controls' | 'separator'>;
 };
 
-export const Header = combineContext(CloseButton, ask(), CloseButton => {
+export const Header = combineContext(CloseButton, NextButton, ask(), (CloseButton, NextButton) => {
 	class RawHeader extends PureComponent<RawHeaderProps> {
 		render() {
-			const { theme } = this.props;
+			const { isDisabled, theme } = this.props;
 			const Container = withStyled(theme.container)();
 			const Audio = withStyled(theme.audio)();
 			const Controls = withStyled(theme.controls)();
@@ -30,7 +31,7 @@ export const Header = combineContext(CloseButton, ask(), CloseButton => {
 							<PlayButton />
 						</Audio>
 						<Controls>
-							<NextButton />
+							<NextButton isDisabled={isDisabled} />
 							<Separator />
 							<CloseButton />
 						</Controls>

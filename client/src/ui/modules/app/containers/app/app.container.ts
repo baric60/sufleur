@@ -1,12 +1,21 @@
-import { ask, combineContext } from '@devexperts/rx-utils/dist/context.utils';
+import { combineContext, deferContext } from '@devexperts/rx-utils/dist/context.utils';
 import { AuthorizedContainer } from '../../../autorized/containers/authorized.container';
 import { createHistory } from '../../../../utils/history.utils';
 import { runOnMount } from '../../../../utils/react.utils';
+import { createWidgetModel } from '../../../../view-model/widget/widget.view-model';
+import { sequenceTSink } from '@devexperts/rx-utils/dist/sink.utils';
 
-type ConnectionContext = {
-	readonly history: History;
-};
+const Connection = combineContext(
+	deferContext(AuthorizedContainer, 'widget', 'history'),
+	createWidgetModel,
+	createHistory,
+	(Container, createWidgetModel, createHistory) =>
+		sequenceTSink(createWidgetModel()).chain(([widget]) =>
+			Container.run({
+				widget,
+				history: createHistory(),
+			}),
+		),
+);
 
-const Connection = combineContext(AuthorizedContainer, ask<ConnectionContext>(), Connection => Connection);
-
-export const AppContainer = runOnMount(Connection, () => () => ({ history: createHistory() } as any));
+export const AppContainer = runOnMount(Connection, () => () => ({} as any));

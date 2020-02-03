@@ -12,7 +12,7 @@ const work = `
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 510px;
+    max-width: 735px;
     margin: 0 auto;
     padding-top: 28px;
 `;
