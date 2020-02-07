@@ -7,6 +7,7 @@ import { withStyles } from '../../../../../ui-kit/utils/with-styles.utils';
 import { MakeTheme } from '../../../../../ui-kit/utils/theme.utils';
 import { Empty } from '../empty/empty.component';
 import { withStyled } from '../../../../../ui-kit/utils/with-styled.utils';
+import { WidgetItem } from '../item/item.component';
 
 type Widget = {
 	id: string;
@@ -42,8 +43,10 @@ export const WidgetList = combineContext(ask(), () => {
 				return <Empty />;
 			}
 
-			return <div />;
+			return data.map(this.renderWidget);
 		};
+
+		private renderWidget = (widget: Widget) => <WidgetItem data={widget}></WidgetItem>;
 	}
 
 	return withStyles(theme)(RawWidgetList);

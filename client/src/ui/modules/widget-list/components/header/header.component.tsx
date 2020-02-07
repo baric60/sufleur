@@ -5,24 +5,24 @@ import { withStyles } from '../../../../../ui-kit/utils/with-styles.utils';
 import { MakeTheme } from '../../../../../ui-kit/utils/theme.utils';
 import { withStyled } from '../../../../../ui-kit/utils/with-styled.utils';
 
-export type HeaderProps = {
-	theme: MakeTheme<'container' | 'content' | 'link'>;
-};
+export type HeaderProps = {};
 
 class RawHeader extends PureComponent<HeaderProps> {
 	render() {
-		const { theme } = this.props;
 		const Container = withStyled(theme.container)();
 		const Content = withStyled(theme.content)();
-		const Label = withStyled(theme.link)('p');
+		const Title = withStyled(theme.title)();
+		const Listenings = withStyled(theme.listenings)();
+		const Duration = withStyled(theme.duration)();
+		const Created = withStyled(theme.created)();
 
 		return (
 			<Container>
 				<Content>
-					<Label>Title</Label>
-					<Label>Listenings</Label>
-					<Label>Duration</Label>
-					<Label>Created</Label>
+					<Title>Title</Title>
+					<Listenings>Listenings</Listenings>
+					<Duration>Duration</Duration>
+					<Created>Created</Created>
 				</Content>
 			</Container>
 		);

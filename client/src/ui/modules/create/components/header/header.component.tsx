@@ -11,13 +11,14 @@ import { withStyled } from '../../../../../ui-kit/utils/with-styled.utils';
 
 type RawHeaderProps = {
 	isDisabled: boolean;
+	onCreate: () => void;
 	theme: MakeTheme<'container' | 'content' | 'audio' | 'controls' | 'separator'>;
 };
 
 export const Header = combineContext(CloseButton, NextButton, ask(), (CloseButton, NextButton) => {
 	class RawHeader extends PureComponent<RawHeaderProps> {
 		render() {
-			const { isDisabled, theme } = this.props;
+			const { isDisabled, theme, onCreate } = this.props;
 			const Container = withStyled(theme.container)();
 			const Audio = withStyled(theme.audio)();
 			const Controls = withStyled(theme.controls)();
@@ -31,7 +32,7 @@ export const Header = combineContext(CloseButton, NextButton, ask(), (CloseButto
 							<PlayButton />
 						</Audio>
 						<Controls>
-							<NextButton isDisabled={isDisabled} />
+							<NextButton isDisabled={isDisabled} onClick={onCreate} />
 							<Separator />
 							<CloseButton />
 						</Controls>

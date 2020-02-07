@@ -20,6 +20,7 @@ type FormValue = {
 type CreateComponentProps = ControlProps<FormValue> & {
 	isDisabled: boolean;
 	theme: MakeTheme<'container' | 'content' | 'work' | 'Input' | 'Textarea'>;
+	onCreate: () => void;
 };
 
 export const Create = combineContext(Header, ask(), Header => {
@@ -33,7 +34,7 @@ export const Create = combineContext(Header, ask(), Header => {
 			return (
 				<Container>
 					<Content>
-						<Header isDisabled={isDisabled} />
+						<Header isDisabled={isDisabled} onCreate={this.handleCreate} />
 						<WorkArea>
 							<Input
 								value={value.title}
@@ -69,6 +70,11 @@ export const Create = combineContext(Header, ask(), Header => {
 					...value,
 					description,
 				});
+		};
+
+		private handleCreate = () => {
+			const { onCreate } = this.props;
+			onCreate && onCreate();
 		};
 	}
 
