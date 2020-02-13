@@ -44,5 +44,8 @@
     "storybook": "start-storybook --port=8080",
     "prettier": "prettier --list-different \"./src/**/*.{ts,tsx}\"",
     "prettier:fix": "prettier --write \"./src/**/*.{ts,tsx}\""
+  },
+  "devDependencies": {
+    "babel-loader": "^8.0.6"
   }
 }

@@ -4,7 +4,7 @@ import { map, toNullable } from 'fp-ts/lib/Option';
 import { parse } from '../../../ui/modules/routes';
 import { pipe } from 'fp-ts/lib/pipeable';
 
-type RouteComponentProps<P> = {
+export type RouteComponentProps<P> = {
 	match: Match<P>;
 	path: string;
 	render: () => ReactNode;

@@ -10,7 +10,7 @@ const root = document.getElementById('root');
 
 export const GlobalStyle = createGlobalStyle(styles);
 
-const renderComponent = (Target: ComponentType) => {
+const renderComponent = (Target: ComponentType<any>) => {
 	const Component = (
 		<Fragment>
 			<GlobalStyle />

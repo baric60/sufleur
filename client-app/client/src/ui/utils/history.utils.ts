@@ -1,5 +1,6 @@
 import { createBrowserHistory, Location, Action, Path } from 'history';
 import { Observable } from 'rxjs';
+import { combineContext, ask } from '@devexperts/rx-utils/dist/context.utils';
 
 const initHistory = () =>
 	createBrowserHistory({
@@ -18,7 +19,9 @@ type HistoryProps<R extends RouterState> = {
 	replace: (path: Path) => void;
 };
 
-export const createHistory = (): HistoryProps<RouterState> => {
+export type History = HistoryProps<RouterState>;
+// : HistoryProps<RouterState>
+export const createHistory = combineContext(ask(), () => () => {
 	const history = initHistory();
 	const { location, action, listen, push, replace } = history;
 	const state$ = new Observable<RouterState>(subscriber => {
@@ -39,4 +42,4 @@ export const createHistory = (): HistoryProps<RouterState> => {
 		},
 		state$,
 	};
-};
+});

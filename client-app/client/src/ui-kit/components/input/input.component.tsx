@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { PureComponent, FocusEvent, ChangeEvent } from 'react';
-import { withStyled } from '../../../ui/utils/with-styled.utils';
+import { withStyled } from '../../../ui-kit/utils/with-styled.utils';
 import { theme } from './theme/input.theme';
 import { ControlProps } from '../../utils/control.utils';
 import { withStyles } from '../../utils/with-styles.utils';
 import { MakeTheme } from '../../utils/theme.utils';
+import { PartialKeys } from '../../utils/object.utils';
 
 export type InputType = 'text' | 'password';
 
@@ -62,4 +63,5 @@ class RawInput extends PureComponent<RawInputProps> {
 	};
 }
 
+export type InputProps = PartialKeys<RawInputProps, 'theme'>;
 export const Input = withStyles(theme)(RawInput);
