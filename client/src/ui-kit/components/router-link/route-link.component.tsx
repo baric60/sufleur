@@ -1,4 +1,4 @@
-import { PureComponent, ReactNode } from 'react';
+import { PureComponent, ReactNode, MouseEvent } from 'react';
 import { Action } from 'history';
 
 export type RouteLinkNavigateOptions = {
@@ -6,14 +6,14 @@ export type RouteLinkNavigateOptions = {
 	href: string;
 };
 
-type RouteLinkComponentProps = {
+export type RouteLinkComponentProps = {
 	href: string;
 	render: (props: RouteLinkRenderProps) => ReactNode;
 	onNavigate: (options: RouteLinkNavigateOptions) => void;
 };
 
 export type RouteLinkRenderProps = {
-	onNavigate: () => void;
+	onNavigate: (event: MouseEvent) => void;
 	href: string;
 };
 
@@ -27,7 +27,8 @@ export class RouteLinkComponent extends PureComponent<RouteLinkComponentProps> {
 		});
 	}
 
-	private handleNavigate = () => {
+	private handleNavigate = (event: MouseEvent) => {
+		event.preventDefault();
 		const { href, onNavigate } = this.props;
 		onNavigate({
 			href,

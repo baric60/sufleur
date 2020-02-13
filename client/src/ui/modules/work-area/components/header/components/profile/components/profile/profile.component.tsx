@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { PureComponent } from 'react';
-import { withStyled } from '../../../../../../../../utils/with-styled.utils';
 import { theme } from './theme/profile.theme';
 import { withStyles } from '../../../../../../../../../ui-kit/utils/with-styles.utils';
 import { MakeTheme } from '../../../../../../../../../ui-kit/utils/theme.utils';
+import { withStyled } from '../../../../../../../../../ui-kit/utils/with-styled.utils';
 
 type ProfileProps = {
 	theme: MakeTheme<'button'>;

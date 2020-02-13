@@ -1,23 +1,21 @@
-import { withObservable } from '../../../../utils/with-observable.utils';
-import { App } from '../../components/app/app.component';
+import { combineContext, deferContext } from '@devexperts/rx-utils/dist/context.utils';
+import { AuthorizedContainer } from '../../../autorized/containers/authorized.container';
 import { createHistory } from '../../../../utils/history.utils';
-import { map } from 'rxjs/operators';
+import { runOnMount } from '../../../../utils/react.utils';
+import { createWidgetModel } from '../../../../view-model/widget/widget.view-model';
+import { sequenceTSink } from '@devexperts/rx-utils/dist/sink.utils';
 
-const history = createHistory();
+const Connection = combineContext(
+	deferContext(AuthorizedContainer, 'widget', 'history'),
+	createWidgetModel,
+	createHistory,
+	(Container, createWidgetModel, createHistory) =>
+		sequenceTSink(createWidgetModel()).chain(([widget]) =>
+			Container.run({
+				widget,
+				history: createHistory(),
+			}),
+		),
+);
 
-export const AppContainer = withObservable(App)(() => {
-	const state$ = history.state$;
-	const path$ = state$.pipe(
-		map(state => state.location),
-		map(location => location.pathname),
-	);
-
-	return {
-		defaultProps: {
-			path: history.state.location.pathname,
-		},
-		props: {
-			path: path$,
-		},
-	};
-});
+export const AppContainer = runOnMount(Connection, () => () => ({} as any));
